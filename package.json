@@ -1,28 +1,42 @@
 {
   "name": "mermaid-parser",
   "version": "1.0.0",
-  "description": "",
+  "description": "Parser for Mermaid Diagrams that you can use in the backend.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amguerrero/mermaid-parser"
+  },
   "files": [
-    "dist"
+    "dist",
+    "page/index.html"
   ],
   "scripts": {
     "build": "tsup",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "mermaid",
     "parser",
     "diagram",
-    "graph"
+    "graph",
+    "flowchart",
+    "server"
   ],
   "author": "amguerrero",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.4",
     "ts-node": "^10.9.2",
     "tsup": "^8.1.0",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "mermaid": "^10.9.1",
+    "puppeteer": "^22.10.0"
   }
 }
