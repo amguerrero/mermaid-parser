@@ -1,7 +1,7 @@
 {
-  "name": "mermaid-parser",
+  "name": "simple-mermaid-parser",
   "version": "1.0.0",
-  "description": "Parser for Mermaid Diagrams that you can use in the backend.",
+  "description": "Simple parser for Mermaid Diagrams that you can use in the backend.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

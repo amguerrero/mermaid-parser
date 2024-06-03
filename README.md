@@ -21,16 +21,16 @@ ParsedDiagram = {
 
 ## How to use it
 
-First add `mermaid-parser` to the project.
+First add `simple-mermaid-parser` to the project.
 
 ```bash
-npm i mermaid-parser
+npm i simple-mermaid-parser
 ```
 
 Then import it where you need:
 
 ```typescript
-import { parse } from "mermaid-parser";
+import { parse } from "simple-mermaid-parser";
 ```
 
 So you can use it to parse mermaid diagrams:
