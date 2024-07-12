@@ -30,7 +30,7 @@ npm i simple-mermaid-parser
 Then import it where you need:
 
 ```typescript
-import { parse } from "simple-mermaid-parser";
+import { parse, toSvg, toPng } from "simple-mermaid-parser";
 ```
 
 So you can use it to parse mermaid diagrams:
@@ -85,5 +85,42 @@ Output:
     length: 1
   }
 ]
+*/
+```
+
+Or you can use it to create an SVG image of the diagram:
+
+```typescript
+const diagram = `
+graph LR
+  A["The A"] --> B["The B"] --> C["The C"]
+  E["The E"] --> C
+  F["The F"] --> B
+`;
+const svgText = await toSvg(diagram);
+/*
+Outputs:
+<svg>...</svg>
+*/
+
+await toSvg(diagram, "diagram.svg");
+/*
+Creates diagram.svg
+*/
+```
+
+And also a PNG file of the diagram:
+
+```typescript
+const diagram = `
+graph LR
+  A["The A"] --> B["The B"] --> C["The C"]
+  E["The E"] --> C
+  F["The F"] --> B
+`;
+
+await toPng(diagram, "diagram.png");
+/*
+Creates diagram.png with the image for this diagram
 */
 ```

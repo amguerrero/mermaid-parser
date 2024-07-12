@@ -1,10 +1,17 @@
-import { parse } from "../src";
+import fs from "fs";
+import { toSvg } from "../src";
 
 beforeEach(() => {
   jest.setTimeout(30000);
 });
 
-test("Parses a complex flowchart correctly", async () => {
+afterEach(() => {
+  if (fs.existsSync("test.svg")) {
+    fs.unlinkSync("test.svg");
+  }
+});
+
+test("Convert a complex flowchart to Svg correctly", async () => {
   const flowchart = `
   flowchart LR
     subgraph Proj1["Project 1"]
@@ -29,17 +36,9 @@ test("Parses a complex flowchart correctly", async () => {
     Merge2 --> Merge
 `;
 
-  const diag = await parse(flowchart);
+  const svg = await toSvg(flowchart);
 
-  expect(diag.direction).toBe("LR");
-  expect(Object.keys(diag.vertices).length).toBe(12);
-  expect(diag.edges.length).toBe(10);
-  diag.edges
-    .filter((e) => e.end === "Test")
-    .forEach((e) => {
-      expect(e.stroke).toBe("dotted");
-    });
-  expect(diag.subGraphs.length).toBe(3);
+  expect(svg).toBeDefined();
 });
 
 test("Parses a simple graph correctly", async () => {
@@ -51,14 +50,8 @@ graph LR
   F["The F"] --> B
 `;
 
-  const diag = await parse(flowchart);
+  const svg = await toSvg(flowchart, "test.svg");
 
-  expect(diag.direction).toBe("LR");
-  expect(Object.keys(diag.vertices).length).toBe(5);
-  expect(diag.vertices.A.text).toBe("The A");
-  expect(diag.vertices.B.text).toBe("The B");
-  expect(diag.vertices.C.text).toBe("The C");
-  expect(diag.vertices.E.text).toBe("The E");
-  expect(diag.vertices.F.text).toBe("The F");
-  expect(diag.edges.length).toBe(4);
+  expect(svg).toBeDefined();
+  expect(fs.existsSync("test.svg")).toBe(true);
 });
